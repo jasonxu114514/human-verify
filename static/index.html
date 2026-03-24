@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scenic Slider Verification</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="intro-panel">
+      <p class="eyebrow">Scenic Slider Verification</p>
+      <h1>Drag the puzzle piece back into place.</h1>
+      <p class="lead">This demo now uses server-generated raster images for the panel and the draggable piece, then renders them with canvas in the browser.</p>
+      <div class="intro-grid">
+        <article class="metric-card">
+          <span class="metric-label">Rendering</span>
+          <strong>Canvas-based piece extraction</strong>
+          <span class="metric-note">The server returns `panel.png` and `piece.png`, and the browser displays both with canvas.</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Signals</span>
+          <strong>Position and behavior checks</strong>
+          <span class="metric-note">Alignment, duration, monotonicity, jitter and speed variance are all scored.</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Assets</span>
+          <strong>Works with your own scene images</strong>
+          <span class="metric-note">Replace files under `static/assets` and keep the same image ratio.</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="captcha-panel">
+      <div class="panel-header">
+        <div>
+          <p class="panel-title">Human Verification</p>
+          <p class="panel-subtitle">Drag the slider until the extracted piece matches the visible gap.</p>
+        </div>
+        <button id="refreshButton" class="ghost-button" type="button">New Scene</button>
+      </div>
+
+      <div id="panelStage" class="panel-stage" aria-live="polite">
+        <canvas id="panelCanvas" class="panel-canvas"></canvas>
+        <canvas id="pieceCanvas" class="piece-canvas" aria-hidden="true"></canvas>
+        <div class="stage-sheen"></div>
+      </div>
+
+      <div class="slider-wrap">
+        <div id="sliderTrack" class="slider-track">
+          <div id="sliderFill" class="slider-fill"></div>
+          <button id="sliderThumb" class="slider-thumb" type="button" aria-label="Drag slider to verify">
+            <span class="thumb-core"></span>
+            <span class="thumb-text">Drag</span>
+          </button>
+        </div>
+      </div>
+
+      <p id="statusLine" class="status-line" data-tone="neutral">Preparing a new scenic puzzle...</p>
+    </section>
+  </main>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
